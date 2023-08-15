@@ -9,8 +9,6 @@ jobs:
       - image: circleci/python:3.10.2
     executor: python/default
     steps:
-      - checkout
-      - python/load-cache
       - run:
           command: 
             virtualenv env
@@ -18,7 +16,6 @@ jobs:
             pip install --upgrade pip
             pip install -r ../requirements.txt
           name: Install Deps
-      - python/save-cache
       - run:
           command: python3 test.py
           name: Test

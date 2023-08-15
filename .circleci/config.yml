@@ -17,7 +17,7 @@ jobs:
             pip install -r ../requirements.txt
           name: Install Deps
       - run:
-          command: python3 test.py
+          command: python3 -m pytest
           name: Test
 
 workflows:

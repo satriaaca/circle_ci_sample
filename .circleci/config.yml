@@ -12,7 +12,7 @@ jobs:
       - checkout
       - python/load-cache
       - run:
-          command:
+          command: 
             virtualenv env
             . env/bin/activate
             pip install --upgrade pip

@@ -11,14 +11,20 @@ jobs:
       - checkout
       - python/install-packages:
           pkg-manager: pip
+      - attach_workspace:
+          at: /home/circleci/project
       - run:
           name: Install Packages
           command: |
             sudo cp ./requirements.txt /tmp/
-      - run:
-          name: Run tests
-          # This assumes pytest is installed via the install-package step above
-          command: python test.py
+            zip ./fungsi.zip .
+            python test.py
+      - store_artifacts:
+          path: /home/circleci/project/fungsi.zip
+      - persist_to_workspace:
+          root: /home/circleci/project
+          paths:
+            - fungsi.zip
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows

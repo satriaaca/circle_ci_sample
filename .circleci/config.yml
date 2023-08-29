@@ -10,12 +10,10 @@ jobs:
     executor: python/default
     steps:
       - run:
+          name: Install Packages
           command: 
-            virtualenv env
-            . env/bin/activate
-            pip install --upgrade pip
-            pip install -r ../requirements.txt
-          name: Install Deps
+            COPY ../requirements.txt /tmp/
+            RUN pip install --requirement /tmp/requirements.txt
       - run:
           command: python3 -m pytest
           name: Test
